@@ -1,11 +1,15 @@
 import React from "react";
-import Page from "../components/Page";
+import Button from "../components/Button";
 
 function Page1() {
+  const question1 = "What do you want to do?";
+  const buttonsPage1 = ["Yum", "Gulp", "Shop", "Chill"];
   return (
     <div>
-      Page 1
-      <Page />
+      <h2> {question1}</h2>
+      {buttonsPage1.map((button) => {
+        return <Button destination={`/${button}`}>{button}</Button>;
+      })}
     </div>
   );
 }
