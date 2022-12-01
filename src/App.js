@@ -9,7 +9,6 @@ import Page3 from "./Pages/Page3";
 import restaurant from "./services/RestaurantData";
 import AnimatedRoute from "./components/AnimatedRoute";
 import GlobalCard from "./components/card/GlobalCard";
-import SwipeButtons from "./components/card/SwipeButtons";
 
 function App() {
   const getLocation = () => {
