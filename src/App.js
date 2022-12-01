@@ -8,6 +8,8 @@ import Page2 from "./Pages/Page2";
 import Page3 from "./Pages/Page3";
 import restaurant from "./services/RestaurantData";
 import AnimatedRoute from "./components/AnimatedRoute";
+import GlobalCard from "./components/card/GlobalCard";
+import SwipeButtons from "./components/card/SwipeButtons";
 
 function App() {
   const getLocation = () => {
@@ -18,12 +20,12 @@ function App() {
       .then((data) => console.log(data));
   };
 
-  
-
   return (
     <div className="App">
       <h1>BOUIBOUI</h1>
-      <Geolocalization data={restaurant}/>
+      <Geolocalization data={restaurant} />
+      <GlobalCard />
+
       <BrowserRouter>
         <Header />
         <AnimatedRoute></AnimatedRoute>
