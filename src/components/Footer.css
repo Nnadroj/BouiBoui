@@ -2,4 +2,8 @@
   min-height: 3rem;
   border-top-style: solid;
   border-top-color: blue;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
 }

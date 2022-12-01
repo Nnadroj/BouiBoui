@@ -7,6 +7,7 @@ import Page1 from "./Pages/Page1";
 import Page2 from "./Pages/Page2";
 import Page3 from "./Pages/Page3";
 import restaurant from "./services/RestaurantData";
+import AnimatedRoute from "./components/AnimatedRoute";
 
 function App() {
   const getLocation = () => {
@@ -23,11 +24,7 @@ function App() {
       <Geolocalization />
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Page1 />} />
-          <Route path="/:category" element={<Page2 />} />
-          <Route path="/:category/:list" element={<Page3 />} />
-        </Routes>
+        <AnimatedRoute></AnimatedRoute>
         <Footer />
       </BrowserRouter>
 
