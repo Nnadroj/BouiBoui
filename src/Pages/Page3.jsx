@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../components/Button";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import "./Pages.css";
 
 function Page3() {
   const question3 = "What type of food do you want? ";
@@ -8,12 +10,18 @@ function Page3() {
   const { list } = useParams();
   console.log(list);
   return (
-    <div>
-      <h2> {question3}</h2>
+    <motion.div
+      className="page3-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.1 } }}
+      transition={{ duration: 0.3 }}
+    >
+      <h2>{question3}</h2>
       {buttonsPage3.map((button) => {
         return <Button list={list}>{button}</Button>;
       })}
-    </div>
+    </motion.div>
   );
 }
 

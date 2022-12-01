@@ -1,0 +1,7 @@
+.page1-container,
+.page2-container,
+.page3-container {
+  background-color: red;
+  position: absolute;
+  width: 100%;
+}
