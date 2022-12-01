@@ -4,7 +4,8 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
-export default function SwipeButtons() {
+export default function SwipeButtons(props) {
+  const { goBack, swipe, canSwipe } = props;
   return (
     <div className="swipeButtons">
       <IconButton className="icon swipeButtons_repeat">

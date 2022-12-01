@@ -70,7 +70,7 @@ export default function GlobalCard() {
             className="card-content">
             <h3>{resto.name}</h3>
           </div>
-          <SwipeButtons />
+          <SwipeButtons goBack={goBack} swipe={swipe} canSwipe={canSwipe} />
         </TinderCard>
       ))}
       ;

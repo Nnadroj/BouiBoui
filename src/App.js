@@ -8,7 +8,6 @@ import { useGeolocated } from "react-geolocated";
 import getDistance from "./services/getDistance";
 import restaurants from "./services/RestaurantData";
 import AnimatedRoute from "./components/AnimatedRoute";
-import GlobalCard from "./components/card/GlobalCard";
 
 function App() {
   const getLocation = () => {
@@ -35,7 +34,6 @@ function App() {
   return (
     <div className="App">
       <h1>BOUIBOUI</h1>
-      <GlobalCard />
       <Geolocalization data={restaurants} />
       <BrowserRouter>
         <Header />
