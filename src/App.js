@@ -17,10 +17,12 @@ function App() {
       .then((data) => console.log(data));
   };
 
+  
+
   return (
     <div className="App">
       <h1>BOUIBOUI</h1>
-      <Geolocalization />
+      <Geolocalization data={restaurant}/>
       <BrowserRouter>
         <Header />
         <Routes>
