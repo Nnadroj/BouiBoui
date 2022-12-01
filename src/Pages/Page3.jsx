@@ -1,14 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Button from "../components/Button";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Pages.css";
+import restaurants from "../services/RestaurantData";
+import getDistance from "../services/getDistance";
 
-function Page3() {
+function Page3({userCoords}) {
+
+  const [dataList, setDataList] = useState([]);
   const question3 = "What type of food do you want? ";
-  const buttonsPage3 = ["Deals", "Newbies", "Categories", "See all"];
-  const { list } = useParams();
-  console.log(list);
+  
+  useEffect(() => {
+    userCoords &&
+    setDataList(
+        restaurants.filter(
+          (el) =>
+            el.offer.length && 
+            getDistance(
+              userCoords.latitude,
+              userCoords.longitude,
+              el.coords.latitude,
+              el.coords.longitude,
+              "K"
+            ) <= 5
+        )
+      );
+  }, [userCoords]);
+  
   return (
     <motion.div
       className="page3-container"
@@ -18,11 +37,11 @@ function Page3() {
       transition={{ duration: 0.3 }}
     >
       <h2>{question3}</h2>
-      {buttonsPage3.map((button) => {
-        return <Button list={list}>{button}</Button>;
-      })}
+      {
+        dataList.map(resto => <div>{resto.name}</div>)
+      }
     </motion.div>
-  );
+  )
 }
 
 export default Page3;

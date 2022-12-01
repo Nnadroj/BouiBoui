@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGeolocated } from "react-geolocated";
 import getDistance from "../services/getDistance";
-import restaurant from "../services/RestaurantData";
 
 const Geolocalization = ({ data }) => {
   const [list, setList] = useState([]);
@@ -41,5 +40,3 @@ const Geolocalization = ({ data }) => {
 };
 
 export default Geolocalization;
-
-// {getDistance(coords.latitude, coords.longitude, data[0].coords.latitude, data[0].coords.longitude, "K")}

@@ -1,18 +1,18 @@
 import React, { useState, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
 import SwipeButtons from "./SwipeButtons";
-import restaurant from "../../services/RestaurantData";
+import restaurants from "../../services/RestaurantData";
 import "./GlobalCard.css";
 
 export default function GlobalCard() {
-  const [currentIndex, setCurrentIndex] = useState(restaurant.length - 1);
+  const [currentIndex, setCurrentIndex] = useState(restaurants.length - 1);
   const [lastDirection, setLastDirection] = useState();
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(
     () =>
-      Array(restaurant.length)
+      Array(restaurants.length)
         .fill(0)
         .map((i) => React.createRef()),
     []
@@ -23,7 +23,7 @@ export default function GlobalCard() {
     currentIndexRef.current = val;
   };
 
-  const canGoBack = currentIndex < restaurant.length - 1;
+  const canGoBack = currentIndex < restaurants.length - 1;
 
   const canSwipe = currentIndex >= 0;
 
@@ -43,7 +43,7 @@ export default function GlobalCard() {
   };
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < restaurant.length) {
+    if (canSwipe && currentIndex < restaurants.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -58,7 +58,7 @@ export default function GlobalCard() {
 
   return (
     <div className="TinderCard">
-      {restaurant.map((resto, index) => (
+      {restaurants.map((resto, index) => (
         <TinderCard
           ref={childRefs[index]}
           className="swipe"
