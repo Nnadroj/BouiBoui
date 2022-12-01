@@ -46,6 +46,7 @@ const restaurants = [
     postCode: "75020",
     city: "Paris",
     country: "France",
+    img: restau,
     coords: {
       latitude: 48.8683,
       longitude: 2.40116,

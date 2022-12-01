@@ -66,7 +66,7 @@ export default function GlobalCard() {
           onSwipe={(dir) => swiped(dir, resto.name, index)}
           onCardLeftScreen={() => outOfFrame(resto.name, index)}>
           <div
-            style={{ backgroundImage: `url(${resto.picture})` }}
+            style={{ backgroundImage: `url(${resto.img})` }}
             className="card-content">
             <h3>{resto.name}</h3>
           </div>
