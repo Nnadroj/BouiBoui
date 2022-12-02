@@ -80,7 +80,6 @@ export default function GlobalCard() {
           <SwipeButtons goBack={goBack} swipe={swipe} />
         </TinderCard>
       ))}
-      ;
     </div>
   );
 }

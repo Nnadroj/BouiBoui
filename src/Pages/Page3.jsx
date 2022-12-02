@@ -9,7 +9,7 @@ import GlobalCard from "../components/card/GlobalCard";
 
 function Page3({ userCoords }) {
   const [dataList, setDataList] = useState([]);
-  const question3 = "What type of food do you want? ";
+  const question3 = "What type of food do you want?";
   const { list } = useParams();
 
   useEffect(() => {
