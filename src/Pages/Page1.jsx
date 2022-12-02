@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../components/Button";
 import { motion } from "framer-motion";
+import "../components/Button.css";
 
 function Page1() {
   const question1 = "What do you want to do?";
@@ -15,7 +16,13 @@ function Page1() {
     >
       <h2> {question1}</h2>
       {buttonsPage1.map((button) => {
-        return <Button destination={`/${button}`}>{button}</Button>;
+        return (
+          <div>
+            <Button key={button} destination={`/${button}`}>
+              {button}
+            </Button>
+          </div>
+        );
       })}
     </motion.div>
   );

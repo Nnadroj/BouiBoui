@@ -7,7 +7,7 @@ function Page2() {
   const question2 = "Choose a category";
   const buttonsPage2 = ["Deals", "Newbies", "Categories", "See all"];
   const { category } = useParams();
-  console.log(category);
+  /*   console.log(category); */
 
   return (
     <motion.div
@@ -17,15 +17,20 @@ function Page2() {
       exit={{ opacity: 0, transition: { duration: 0.1 } }}
       transition={{ duration: 0.3 }}
     >
-      {category !== "Yum" ? 
-        <div>Coming soon</div> : 
+      {category !== "Yum" ? (
+        <div>Coming soon</div>
+      ) : (
         <>
           <h2> {question2}</h2>
           {buttonsPage2.map((button) => {
-            return <Button destination={`/${category}/${button}`}>{button}</Button>;
+            return (
+              <Button key={button} destination={`/${category}/${button}`}>
+                {button}
+              </Button>
+            );
           })}
         </>
-      }
+      )}
     </motion.div>
   );
 }

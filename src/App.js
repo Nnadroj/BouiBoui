@@ -34,8 +34,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>BOUIBOUI</h1>
-      <Geolocalization data={restaurants} />
       <BrowserRouter>
         <Header />
         {!isGeolocationAvailable ? (

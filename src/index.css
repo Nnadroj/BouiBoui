@@ -7,4 +7,5 @@ body {
 
 #root {
   overflow-x: hidden;
+  background-color: black;
 }

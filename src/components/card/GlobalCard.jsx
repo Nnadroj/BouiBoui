@@ -1,18 +1,17 @@
 import React, { useState, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
 import SwipeButtons from "./SwipeButtons";
-import restaurants from "../../services/RestaurantData";
 import "./GlobalCard.css";
 
-export default function GlobalCard() {
-  const [currentIndex, setCurrentIndex] = useState(restaurants.length - 1);
+export default function GlobalCard({ dataList }) {
+  const [currentIndex, setCurrentIndex] = useState(dataList.length - 1);
   const [lastDirection, setLastDirection] = useState();
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(
     () =>
-      Array(restaurants.length)
+      Array(dataList.length)
         .fill(0)
         .map((i) => React.createRef()),
     []
@@ -23,7 +22,7 @@ export default function GlobalCard() {
     currentIndexRef.current = val;
   };
 
-  const canGoBack = currentIndex < restaurants.length - 1;
+  const canGoBack = currentIndex < dataList.length - 1;
 
   const canSwipe = currentIndex >= 0;
 
@@ -43,7 +42,7 @@ export default function GlobalCard() {
   };
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < restaurants.length) {
+    if (canSwipe && currentIndex < dataList.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -58,16 +57,18 @@ export default function GlobalCard() {
 
   return (
     <div className="TinderCard">
-      {restaurants.map((resto, index) => (
+      {dataList.map((resto, index) => (
         <TinderCard
           ref={childRefs[index]}
           className="swipe"
           key={resto.name}
           onSwipe={(dir) => swiped(dir, resto.name, index)}
-          onCardLeftScreen={() => outOfFrame(resto.name, index)}>
+          onCardLeftScreen={() => outOfFrame(resto.name, index)}
+        >
           <div
             style={{ backgroundImage: `url(${resto.img})` }}
-            className="card-content">
+            className="card-content"
+          >
             <h3>{resto.name}</h3>
             <p>{resto.street}</p>
             <p>
