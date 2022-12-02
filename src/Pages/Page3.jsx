@@ -57,7 +57,7 @@ function Page3({ userCoords }) {
             {resto.category}
           </Button>
         ) : (
-          <GlobalCard />
+          <GlobalCard dataList={dataList} />
         )
       )}
     </motion.div>
