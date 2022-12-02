@@ -21,7 +21,7 @@
   color: green;
 }
 
-.swipeButtons .swipeButton_favorite {
+.swipeButtons .swipeButtons_favorite {
   padding: 3vw;
-  color: pink;
+  color: red;
 }
