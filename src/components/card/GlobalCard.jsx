@@ -74,7 +74,6 @@ export default function GlobalCard({ dataList }) {
           <SwipeButtons goBack={goBack} swipe={swipe} canSwipe={canSwipe} />
         </TinderCard>
       ))}
-      ;
     </div>
   );
 }
