@@ -8,6 +8,7 @@ import { useGeolocated } from "react-geolocated";
 import getDistance from "./services/getDistance";
 import restaurants from "./services/RestaurantData";
 import AnimatedRoute from "./components/AnimatedRoute";
+import { Global } from "@emotion/react";
 
 function App() {
   const getLocation = () => {

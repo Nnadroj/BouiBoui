@@ -70,8 +70,13 @@ export default function GlobalCard({ dataList }) {
             className="card-content"
           >
             <h3>{resto.name}</h3>
+            <p>{resto.street}</p>
+            <p>
+              {resto.postcode}
+              {resto.city}
+            </p>
           </div>
-          <SwipeButtons goBack={goBack} swipe={swipe} canSwipe={canSwipe} />
+          <SwipeButtons goBack={goBack} swipe={swipe} />
         </TinderCard>
       ))}
     </div>
