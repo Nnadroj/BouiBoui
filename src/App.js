@@ -8,6 +8,7 @@ import { useGeolocated } from "react-geolocated";
 import getDistance from "./services/getDistance";
 import restaurants from "./services/RestaurantData";
 import AnimatedRoute from "./components/AnimatedRoute";
+import { Global } from "@emotion/react";
 
 function App() {
   const getLocation = () => {
@@ -28,21 +29,20 @@ function App() {
     });
 
   useEffect(() => {
-    coords &&
-      setuserCoords(coords)
+    coords && setuserCoords(coords);
   }, [coords]);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
-        {!isGeolocationAvailable ? 
-    <div>Your browser does not support Geolocation</div>
-   : !isGeolocationEnabled ? 
-    <div>Geolocation is not enabled</div>
-   : coords &&
-    <div>Hi, \user/ !</div>
-  }
+        {!isGeolocationAvailable ? (
+          <div>Your browser does not support Geolocation</div>
+        ) : !isGeolocationEnabled ? (
+          <div>Geolocation is not enabled</div>
+        ) : (
+          coords && <div>Hi, \user/ !</div>
+        )}
         <AnimatedRoute userCoords={userCoords}></AnimatedRoute>
         <Footer />
       </BrowserRouter>

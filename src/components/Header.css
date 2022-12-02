@@ -1,5 +1,18 @@
 .header {
   border-bottom-style: solid;
   border-bottom-color: white;
-  min-height: 3rem;
+  min-height: 4rem;
+  margin-top: 0;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.header a:visited {
+  text-decoration: none;
+  color: white;
 }
