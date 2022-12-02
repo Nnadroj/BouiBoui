@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SwipeButtons.css";
 import ReplayIcon from "@mui/icons-material/Replay";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
+import Match from "./Match";
+
 export default function SwipeButtons(props) {
   const { goBack, swipe } = props;
+  const [isShown, setIsShown] = useState(false);
 
   const handleBack = () => {
     goBack();
@@ -16,7 +19,7 @@ export default function SwipeButtons(props) {
   };
 
   const handleSwipeRight = () => {
-    swipe("right");
+    setIsShown(!isShown);
   };
 
   return (
@@ -29,8 +32,10 @@ export default function SwipeButtons(props) {
       </IconButton>
       <IconButton
         className="icon swipeButtons_favorite"
-        onClick={handleSwipeRight}>
+        onClick={handleSwipeRight}
+      >
         <FavoriteIcon fontSize="large" />
+        {isShown && <Match swipe={swipe} />}
       </IconButton>
     </div>
   );
