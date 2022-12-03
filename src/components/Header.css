@@ -1,15 +1,23 @@
 .header {
+  color: #657c2b;
   border-bottom-style: solid;
-  border-bottom-color: white;
-  min-height: 4rem;
+  border-bottom-color: #657c2b;
+  height: 6vh;
   margin-top: 0;
   padding-top: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.header h1 {
+  color: #657c2b;
 }
 
 .header a {
   text-decoration: none;
+  margin: 0;
 }
 
 .header a:visited {

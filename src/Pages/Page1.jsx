@@ -14,7 +14,7 @@ function Page1() {
       exit={{ opacity: 0, transition: { duration: 0.1 } }}
       transition={{ duration: 0.3 }}
     >
-      <h2> {question1}</h2>
+      <h2 className="question"> {question1}</h2>
       {buttonsPage1.map((button) => {
         return (
           <div>

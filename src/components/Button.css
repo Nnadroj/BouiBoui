@@ -1,9 +1,20 @@
-/* .button-container {
-  display: block;
-  border: solid red;
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 2vh;
 }
 
 .button {
-  border: solid blue;
+  font-size: 1.2rem;
+  color: #f6ac3d;
+  text-decoration: none;
+  border-color: #f6ac3d;
+  border-radius: 5px;
+  padding: 0.8rem 2rem 0.8rem 2rem;
+  background: none;
 }
- */
+
+.button:hover {
+  color: #7d5820;
+}

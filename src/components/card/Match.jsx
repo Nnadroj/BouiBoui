@@ -1,8 +1,7 @@
 import React from "react";
-import restaurants from "../../services/RestaurantData";
 import "./Match.css";
 
-export default function Match({ swipe }) {
+export default function Match({ swipe, dataList }) {
   const handleClose = () => {
     swipe("right");
   };
@@ -14,9 +13,11 @@ export default function Match({ swipe }) {
           &times;
         </button>
         <div class="content">
-          <p>{restaurants.name}</p>
-          <p>{restaurants.address}</p>
-          <p>Itinéraire</p>
+          <p>{dataList.name}</p>
+          <p>{dataList.address}</p>
+          <button className="button">
+            Appeler pour réserver :<br /> 06 23 54 12 58
+          </button>
         </div>
       </div>
     </div>

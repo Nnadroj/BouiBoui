@@ -9,8 +9,6 @@ import getDistance from "./services/getDistance";
 import restaurants from "./services/RestaurantData";
 import AnimatedRoute from "./components/AnimatedRoute";
 import { Global } from "@emotion/react";
-import GlobalCard from "./components/card/GlobalCard";
-import Match from "./components/card/Match";
 
 function App() {
   const getLocation = () => {
@@ -36,20 +34,19 @@ function App() {
 
   return (
     <div className="App">
-      <GlobalCard />
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Header />
         {!isGeolocationAvailable ? (
           <div>Your browser does not support Geolocation</div>
         ) : !isGeolocationEnabled ? (
-          <div>Geolocation is not enabled</div>
+          <div className="welcome">Geolocation is not enabled</div>
         ) : (
-          coords && <div>Hi, \user/ !</div>
+          coords && <div className="welcome">Welcome !</div>
         )}
 
         <AnimatedRoute userCoords={userCoords}></AnimatedRoute>
         <Footer />
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }

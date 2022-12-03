@@ -4,10 +4,11 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Match from "./Match";
 
 export default function SwipeButtons(props) {
-  const { goBack, swipe } = props;
+  const { goBack, swipe, handleDetail, dataList } = props;
   const [isShown, setIsShown] = useState(false);
 
   const handleBack = () => {
@@ -35,7 +36,10 @@ export default function SwipeButtons(props) {
         onClick={handleSwipeRight}
       >
         <FavoriteIcon fontSize="large" />
-        {isShown && <Match swipe={swipe} />}
+        {isShown && <Match swipe={swipe} dataList={dataList} />}
+      </IconButton>
+      <IconButton className="icon swipeButtons_arrow" onClick={handleDetail}>
+        <ArrowDownwardIcon fontSize="large" />
       </IconButton>
     </div>
   );

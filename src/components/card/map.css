@@ -1,0 +1,33 @@
+#map {
+  position: absolute;
+  width: 99vw;
+  height: 80vh;
+  margin: auto;
+  z-index: 1;
+  top: -15vh;
+  left: -5vw;
+  opacity: initial;
+}
+
+#map iframe {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+#map-close {
+  position: absolute;
+  background: yellow;
+  border-radius: 50%;
+  width: 2vw;
+  height: 2vw;
+  right: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#map-close:hover {
+  cursor: pointer;
+}

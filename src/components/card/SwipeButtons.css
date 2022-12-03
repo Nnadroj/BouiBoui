@@ -25,3 +25,14 @@
   padding: 3vw;
   color: red;
 }
+
+.swipeButtons .swipeButtons_arrow {
+  padding: 3vw;
+  color: grey;
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+  font-size: 2.05rem;
+}

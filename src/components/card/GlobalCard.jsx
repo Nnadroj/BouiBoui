@@ -2,28 +2,29 @@ import React, { useState, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
 import SwipeButtons from "./SwipeButtons";
 import "./GlobalCard.css";
-import restaurants from "../../services/RestaurantData";
+// import restaurants from "../../services/RestaurantData";
+import { useParams } from "react-router-dom";
+import DetailedCard from "./DetailedCard";
+import TinderDataProfile from "./TinderDataProfile";
 
-export default function GlobalCard() {
-  const [currentIndex, setCurrentIndex] = useState(restaurants.length - 1);
+export default function GlobalCard({ dataList }) {
+  const [currentIndex, setCurrentIndex] = useState(dataList.length);
   const [lastDirection, setLastDirection] = useState();
+  const [detailShown, setDetailShown] = useState();
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
-  const childRefs = useMemo(
-    () =>
-      Array(restaurants.length)
-        .fill(0)
-        .map((i) => React.createRef()),
-    []
-  );
+  const { type } = useParams();
 
+  const childRefs = Array(dataList.length)
+    .fill(0)
+    .map((i) => React.createRef());
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
   };
 
-  const canGoBack = currentIndex < restaurants.length - 1;
+  const canGoBack = currentIndex < dataList.length - 1;
 
   const canSwipe = currentIndex >= 0;
 
@@ -42,44 +43,87 @@ export default function GlobalCard() {
     // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
-  const swipe = async (dir) => {
-    if (canSwipe && currentIndex < restaurants.length) {
-      await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
+  const swipe = (dir) => {
+    if (canSwipe && currentIndex < dataList.length) {
+      childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
 
   // increase current index and show card
-  const goBack = async () => {
+  const goBack = () => {
     if (!canGoBack) return;
     const newIndex = currentIndex + 1;
     updateCurrentIndex(newIndex);
-    await childRefs[newIndex].current.restoreCard();
+    childRefs[newIndex].current.restoreCard();
+  };
+
+  const handleDetail = () => {
+    setDetailShown(!detailShown);
   };
 
   return (
-    <div className="TinderCard">
-      {restaurants.map((resto, index) => (
-        <TinderCard
-          ref={childRefs[index]}
-          className="swipe"
-          key={resto.name}
-          onSwipe={(dir) => swiped(dir, resto.name, index)}
-          onCardLeftScreen={() => outOfFrame(resto.name, index)}
-        >
-          <div
-            style={{ backgroundImage: `url(${resto.img})` }}
-            className="card-content"
-          >
-            <h3>{resto.name}</h3>
-            <p>{resto.street}</p>
-            <p>
-              {resto.postcode}
-              {resto.city}
-            </p>
-          </div>
-          <SwipeButtons goBack={goBack} swipe={swipe} />
-        </TinderCard>
-      ))}
-    </div>
+    <>
+      <div className="TinderCard">
+        {type
+          ? dataList
+              .filter((resto) => resto.category === type)
+              .map((resto, index) => (
+                <TinderCard
+                  ref={childRefs[index]}
+                  className="swipe"
+                  key={resto.name}
+                  onSwipe={(dir) => swiped(dir, resto.name, index)}
+                  onCardLeftScreen={() => outOfFrame(resto.name, index)}
+                >
+                  <div
+                    style={{ backgroundImage: `url(${resto.img})` }}
+                    className="card-content"
+                  >
+                    <div className="globalcard-infos-container">
+                      <h3>{resto.name}</h3>
+                      <p>{resto.street}</p>
+                      <p>
+                        {resto.postcode} {resto.city}
+                      </p>
+                    </div>
+                  </div>
+                  <SwipeButtons goBack={goBack} swipe={swipe} />
+                </TinderCard>
+              ))
+          : dataList.map((resto, index) => (
+              <TinderCard
+                ref={childRefs[index]}
+                className="swipe"
+                key={resto.name}
+                onSwipe={(dir) => swiped(dir, resto.name, index)}
+                onCardLeftScreen={() => outOfFrame(resto.name, index)}
+              >
+                <div
+                  style={{ backgroundImage: `url(${resto.img})` }}
+                  className="card-content"
+                >
+                  <div className="globalcard-infos-container">
+                    <h3>{resto.name}</h3>
+                    <p>{resto.street}</p>
+                    <p>
+                      {resto.postcode} {resto.city}
+                    </p>
+                  </div>
+                </div>
+                <SwipeButtons
+                  goBack={goBack}
+                  swipe={swipe}
+                  handleDetail={handleDetail}
+                  dataList={dataList}
+                />
+              </TinderCard>
+            ))}
+      </div>
+      <div className="content">
+        {detailShown && (
+          <DetailedCard currentResto={dataList[currentIndexRef.current]} />
+        )}
+      </div>
+    </>
   );
 }

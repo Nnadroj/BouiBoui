@@ -17,7 +17,7 @@ function AnimatedRoute({ userCoords }) {
           path="/:category/:list"
           element={<Page3 userCoords={userCoords} />}
         />
-        <Route path="/global-card" element={<GlobalCard />} />
+        <Route path="/global-card/:type" element={<GlobalCard />} />
       </Routes>
     </AnimatePresence>
   );

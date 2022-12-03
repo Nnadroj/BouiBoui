@@ -1,9 +1,10 @@
 .footer {
   height: 3vh;
   border-top-style: solid;
-  border-top-color: blue;
+  border-top-color: #657c2b;
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: black;
+  display: flex;
+  justify-content: center;
 }

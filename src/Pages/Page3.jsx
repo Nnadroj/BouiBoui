@@ -11,12 +11,13 @@ function Page3({ userCoords }) {
   const [dataList, setDataList] = useState([]);
   const question3 = "What type of food do you want?";
   const { list } = useParams();
+  console.log(userCoords);
 
   useEffect(() => {
     userCoords &&
       setDataList(
-        restaurants.filter(
-          (el) =>
+        restaurants.filter((el) => {
+          return (
             manageDataListByparam(list, el) &&
             getDistance(
               userCoords.latitude,
@@ -25,7 +26,8 @@ function Page3({ userCoords }) {
               el.coords.longitude,
               "K"
             ) <= 5
-        )
+          );
+        })
       );
   }, [userCoords]);
 
@@ -51,14 +53,33 @@ function Page3({ userCoords }) {
       transition={{ duration: 0.3 }}
     >
       <h2>{question3}</h2>
-      {dataList.map((resto) =>
-        list === "Categories" ? (
-          <Button key={resto.category} destination={"/global-card"}>
-            {resto.category}
-          </Button>
-        ) : (
-          <GlobalCard dataList={dataList} />
-        )
+      {list === "Categories" ? (
+        dataList
+          .reduce((acc, resto) => {
+            return acc.includes(resto.category)
+              ? acc
+              : [...acc, resto.category];
+          }, [])
+          .map((category) => (
+            <Button key={category} destination={`/global-card/${category}`}>
+              {category}
+            </Button>
+          ))
+      ) : (
+        <GlobalCard
+          dataList={dataList.map((resto) => {
+            return {
+              ...resto,
+              distance: getDistance(
+                userCoords.latitude,
+                userCoords.longitude,
+                resto.coords.latitude,
+                resto.coords.longitude,
+                "K"
+              ),
+            };
+          })}
+        />
       )}
     </motion.div>
   );
