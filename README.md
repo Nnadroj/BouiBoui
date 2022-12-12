@@ -11,5 +11,6 @@ Co-authors:
 - Célia Rebonato @rebonace
 - Cassandra Juif @kssandraj
 - Francois Tallardat @FjTay
-- Quention Feuvrais @Angeloox 
+- Quention Feuvrais @Angeloox
+- Elias Soufi @Eliasdu93
 - Jordann Le Gal @Nnadroj
